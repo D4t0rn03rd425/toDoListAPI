@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, ImATeapotException, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('greet')
@@ -8,5 +8,10 @@ export class AppController {
 	@Get(':name')
 	getHello(@Param('name') name): string {
 		return `Hello ${name}!`;
+	}
+
+	@Post(':name')
+	postHello() {
+		throw new ImATeapotException();
 	}
 }
