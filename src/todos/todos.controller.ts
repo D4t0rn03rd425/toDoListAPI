@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Logger, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { Todo } from 'src/todo';
 import { TodosService } from './todos.service';
 
@@ -6,8 +6,11 @@ import { TodosService } from './todos.service';
 export class TodosController {
 	constructor(private todosService: TodosService) { }
 
+	private readonly logger = new Logger('TodosController');
+
 	@Get()
 	getAll(): Todo[] {
+		this.logger.log('All todos requested.');
 		return this.todosService.getAll();
 	}
 
